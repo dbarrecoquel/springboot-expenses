@@ -1,6 +1,7 @@
 package com.example.expense.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.example.expense.enums.ExpenseCategory;
@@ -39,7 +40,7 @@ public class Expense {
 	private ExpenseCategory category;
 	
 	@Column(name = "date")
-	private LocalDateTime date;
+	private LocalDate date;
 	
 	@Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -54,9 +55,9 @@ public class ExpenseServiceTest {
 		expense.setLabel("Titre");
 		expense.setAmount(BigDecimal.valueOf(100));
 		expense.setCategory(ExpenseCategory.ALIMENTATION);
-		expense.setDate(LocalDateTime.now());
+		expense.setDate(LocalDate.now());
 		
-		expenseDto = ExpenseDto.from(1L, "Titre",BigDecimal.valueOf(100), ExpenseCategory.ALIMENTATION, LocalDateTime.now(), null, null);
+		expenseDto = ExpenseDto.from(1L, "Titre",BigDecimal.valueOf(100), ExpenseCategory.ALIMENTATION, LocalDate.now(), null, null);
 		
 	}
 	
@@ -136,7 +137,7 @@ public class ExpenseServiceTest {
 			when(expenseRepository.save(any(Expense.class))).thenReturn(expense);
 			when(expenseMapper.toDto(expense)).thenReturn(expenseDto);
 			
-			ExpenseDto result = expenseService.createExpense("Titre", BigDecimal.valueOf(100), ExpenseCategory.ALIMENTATION, LocalDateTime.now());
+			ExpenseDto result = expenseService.createExpense("Titre", BigDecimal.valueOf(100), ExpenseCategory.ALIMENTATION, LocalDate.now());
 		    
 			assertThat(result).isEqualTo(expenseDto);
 			
@@ -151,7 +152,7 @@ public class ExpenseServiceTest {
 			when(expenseRepository.save(any(Expense.class))).thenReturn(expense);
 			when(expenseMapper.toDto(expense)).thenReturn(expenseDto);
 			
-			ExpenseDto result = expenseService.updateExpense(1L,"Titre", BigDecimal.valueOf(100), ExpenseCategory.ALIMENTATION, LocalDateTime.now());
+			ExpenseDto result = expenseService.updateExpense(1L,"Titre", BigDecimal.valueOf(100), ExpenseCategory.ALIMENTATION, LocalDate.now());
 		    
 			assertThat(result).isEqualTo(expenseDto);
 			

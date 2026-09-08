@@ -16,6 +16,7 @@
   </properties>
   <modules>
   	<module>expense</module>
+  	<module>frontrest</module>
   </modules>
   <dependencyManagement>
     <dependencies>

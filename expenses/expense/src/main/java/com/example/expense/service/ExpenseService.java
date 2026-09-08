@@ -1,6 +1,7 @@
 package com.example.expense.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class ExpenseService {
 		return expenseMapper.toDto(expense);
 	}
 	
-	public ExpenseDto createExpense(String label, BigDecimal amount, ExpenseCategory category, LocalDateTime date) {
+	public ExpenseDto createExpense(String label, BigDecimal amount, ExpenseCategory category, LocalDate date) {
 		
 		Expense expense = new Expense();
 		expense.setLabel(label);
@@ -61,7 +62,7 @@ public class ExpenseService {
 		return expenseMapper.toDto(saved);
 		
 	}
-	public ExpenseDto updateExpense(Long id, String label, BigDecimal amount, ExpenseCategory category, LocalDateTime date) {
+	public ExpenseDto updateExpense(Long id, String label, BigDecimal amount, ExpenseCategory category, LocalDate date) {
 		
 		Expense expense = expenseRepository.findById(id).orElseThrow(() -> new RuntimeException("Expense introuvable"));
 		

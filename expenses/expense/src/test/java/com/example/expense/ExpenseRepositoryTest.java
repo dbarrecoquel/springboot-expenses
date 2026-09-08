@@ -3,6 +3,7 @@ package com.example.expense;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -66,7 +67,7 @@ public class ExpenseRepositoryTest {
 		expense.setLabel("Titre");
 		expense.setAmount(BigDecimal.valueOf(100));
 		expense.setCategory(ExpenseCategory.ALIMENTATION);
-		expense.setDate(LocalDateTime.now());
+		expense.setDate(LocalDate.now());
 		
 		em.persistAndGetId(expense);
 		em.clear();
