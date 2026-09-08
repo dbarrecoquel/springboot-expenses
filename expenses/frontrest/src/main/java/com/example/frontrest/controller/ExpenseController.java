@@ -1,4 +1,5 @@
 package com.example.frontrest.controller;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +61,8 @@ public class ExpenseController {
 
 	    List<ExpenseDto> content = expenseMapper.toDtoList(pageResult.getContent());
 	            
-
+	    BigDecimal totalAmount = content.stream().map(ExpenseDto::amount).reduce(BigDecimal.ZERO, BigDecimal::add);
+	    
 	    Map<String, Object> response = new HashMap<>();
 	    response.put("content", content);
 	    response.put("page", pageResult.getNumber());
@@ -68,6 +70,7 @@ public class ExpenseController {
 	    response.put("totalElements", pageResult.getTotalElements());
 	    response.put("totalPages", pageResult.getTotalPages());
 	    response.put("last", pageResult.isLast());
+	    response.put("totalAmount",totalAmount);
 
 	    return ResponseEntity.ok(response);
 	}
